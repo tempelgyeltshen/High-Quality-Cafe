@@ -213,8 +213,9 @@ const NAV_LABELS: Record<number, string> = {
 };
 
 // Pages whose content still appears in the menu but which have no pill in the
-// quick navigation bar (removed on request — both main course sections).
-const NAV_HIDDEN_PAGES: number[] = [2, 3];
+// quick navigation bar (page 3 "Main Course II" is covered by the "Main Course"
+// pill for page 2, which the scroll-spy keeps highlighted across both pages).
+const NAV_HIDDEN_PAGES: number[] = [3];
 
 export const NAVIGATOR_PAGES: { id: string; label: string }[] = MENU_BOOK_PAGES
   .filter((page) => !NAV_HIDDEN_PAGES.includes(page.pageNumber))

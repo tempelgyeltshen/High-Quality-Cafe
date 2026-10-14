@@ -30,13 +30,27 @@ export default function App() {
 
   // Scroll-spy: keep the navigator's active page in sync with scroll position
   useEffect(() => {
-    // Only track pages that have a pill in the navigator, so pages hidden
-    // from the navbar keep the previous pill highlighted while scrolling past.
-    const navPageNumbers = new Set(
-      NAVIGATOR_PAGES.map((p) => Number(p.id.replace('page-', '')))
+    // Track every menu page. Pages without a navbar pill (see NAV_HIDDEN_PAGES)
+    // are mapped below to the nav pill that covers their section.
+    const navIdByPageNumber = new Map(
+      NAVIGATOR_PAGES.map((p) => [
+        Number(p.id.replace('page-', '')) as number,
+        p.id as string,
+      ])
     );
+    const firstNavId = NAVIGATOR_PAGES[0]?.id ?? 'page-1';
+
+    // Hidden page ids highlight the most recent nav pill at or before them
+    // (e.g. page-3 "Main Course II" keeps the page-2 "Main Course" pill active).
+    const toNavId = (pageId: string) => {
+      const num = Number(pageId.replace('page-', ''));
+      if (navIdByPageNumber.has(num)) return navIdByPageNumber.get(num) as string;
+      const before = [...navIdByPageNumber.keys()].filter((n) => n < num);
+      const target = before.length ? Math.max(...before) : Math.min(...navIdByPageNumber.keys());
+      return (target !== undefined && navIdByPageNumber.get(target)) || firstNavId;
+    };
+
     const pageElements = MENU_BOOK_PAGES
-      .filter((p) => navPageNumbers.has(p.pageNumber))
       .map((p) => document.getElementById(`page-${p.pageNumber}`))
       .filter((el): el is HTMLElement => el !== null);
 
@@ -60,7 +74,7 @@ export default function App() {
       ) {
         current = pageElements[pageElements.length - 1].id;
       }
-      setActivePage(current);
+      setActivePage(toNavId(current));
       ticking = false;
     };
 
