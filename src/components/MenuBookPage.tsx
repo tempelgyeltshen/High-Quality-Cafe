@@ -72,7 +72,7 @@ export const MenuBookPage: React.FC<MenuBookPageProps> = ({ page }) => {
             {page.subCategories.map((sub, sIdx) => (
               <div key={sIdx}>
                 {/* Subcategory Header */}
-                {page.pageNumber === 5 ? (
+                {page.pageNumber === 4 ? (
                   <CategoryPill title={sub.title} />
                 ) : (
                   <div className="text-center my-2 sm:my-3">

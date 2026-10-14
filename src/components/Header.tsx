@@ -15,7 +15,7 @@ export const Header: React.FC<HeaderProps> = ({ onScrollToPage }) => {
       <div className="w-full max-w-2xl mx-auto flex flex-col items-center justify-center">
         {/* Exact match to image.png using Asset 2.svg as the official logo */}
         <button
-          onClick={() => onScrollToPage('page-2')}
+          onClick={() => onScrollToPage('page-1')}
           className="flex flex-col items-center gap-2 sm:gap-3 hover:opacity-95 transition-opacity cursor-pointer"
           title="Scroll to Top of Menu"
         >

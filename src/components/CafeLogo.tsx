@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useId } from 'react';
 
 /**
  * EXACT REPLICA OF "Asset 2.svg" UPLOADED BY USER
@@ -12,6 +12,14 @@ export const Asset2Logo: React.FC<{
   width?: number | string;
   className?: string;
 }> = ({ width = 160, className = '' }) => {
+  // Each component instance needs unique SVG defs IDs: duplicate IDs across the
+  // many logo instances on the page are invalid HTML and make all instances
+  // resolve their gradients/filters to the first one in the document.
+  const uid = useId().replace(/[^a-zA-Z0-9]/g, '');
+  const highlightId = `${uid}-asset2Highlight`;
+  const shadowId = `${uid}-asset2Shadow`;
+  const glowId = `${uid}-asset2Glow`;
+
   // Star definitions: cx, cy, outerRadius, innerRadius
   const stars = [
     { id: 's1', cx: 32, cy: 56, R: 20, r: 8.5 },
@@ -30,26 +38,26 @@ export const Asset2Logo: React.FC<{
     >
       <defs>
         {/* Highlight facet gradient */}
-        <linearGradient id="asset2Highlight" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={highlightId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#fff8b3" />
           <stop offset="35%" stopColor="#f7d048" />
           <stop offset="100%" stopColor="#d99916" />
         </linearGradient>
 
         {/* Shadow facet gradient */}
-        <linearGradient id="asset2Shadow" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient id={shadowId} x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="#c7860d" />
           <stop offset="55%" stopColor="#8f5703" />
           <stop offset="100%" stopColor="#5c3401" />
         </linearGradient>
 
         {/* Subtle warm glow filter */}
-        <filter id="asset2Glow" x="-10%" y="-10%" width="120%" height="120%">
+        <filter id={glowId} x="-10%" y="-10%" width="120%" height="120%">
           <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" floodColor="#000000" floodOpacity="0.6" />
         </filter>
       </defs>
 
-      <g filter="url(#asset2Glow)">
+      <g filter={`url(#${glowId})`}>
         {stars.map((star) => {
           const { id, cx, cy, R, r } = star;
           const points: { ox: number; oy: number; ix: number; iy: number }[] = [];
@@ -73,14 +81,14 @@ export const Asset2Logo: React.FC<{
                     {/* Left facet (Highlight side) */}
                     <polygon
                       points={`${cx},${cy} ${p.ox},${p.oy} ${prevInner.ix},${prevInner.iy}`}
-                      fill="url(#asset2Highlight)"
+                      fill={`url(#${highlightId})`}
                       stroke="#d99916"
                       strokeWidth="0.4"
                     />
                     {/* Right facet (Shadow side) */}
                     <polygon
                       points={`${cx},${cy} ${p.ox},${p.oy} ${p.ix},${p.iy}`}
-                      fill="url(#asset2Shadow)"
+                      fill={`url(#${shadowId})`}
                       stroke="#5c3401"
                       strokeWidth="0.4"
                     />

@@ -1,4 +1,5 @@
 import React from 'react';
+import { NAVIGATOR_PAGES } from '../data/menuData';
 
 interface PageNavigatorProps {
   activePage: string;
@@ -9,13 +10,7 @@ export const PageNavigator: React.FC<PageNavigatorProps> = ({
   activePage,
   onSelectPage,
 }) => {
-  const pages = [
-    { id: 'page-2', label: 'Starter' },
-    { id: 'page-3', label: 'Main Course' },
-    { id: 'page-5', label: 'Hot & Cold' },
-    { id: 'page-6', label: 'Beverages' },
-    { id: 'page-7', label: 'Cocktails & Mocktails' },
-  ];
+  const pages = NAVIGATOR_PAGES;
 
   return (
     <div

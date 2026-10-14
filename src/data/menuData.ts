@@ -21,9 +21,9 @@ export const RESTAURANT_INFO = {
 };
 
 export const MENU_BOOK_PAGES: MenuBookPageData[] = [
-  // Page 2: STARTER
+  // Page 1: STARTER
   {
-    pageNumber: 2,
+    pageNumber: 1,
     categoryTitle: "STARTER",
     items: [
       {
@@ -49,9 +49,9 @@ export const MENU_BOOK_PAGES: MenuBookPageData[] = [
     ],
   },
 
-  // Page 3: MAIN COURSE (Part 1)
+  // Page 2: MAIN COURSE (Part 1)
   {
-    pageNumber: 3,
+    pageNumber: 2,
     categoryTitle: "MAIN COURSE",
     items: [
       {
@@ -81,9 +81,9 @@ export const MENU_BOOK_PAGES: MenuBookPageData[] = [
     ],
   },
 
-  // Page 4: MAIN COURSE (Part 2)
+  // Page 3: MAIN COURSE (Part 2)
   {
-    pageNumber: 4,
+    pageNumber: 3,
     categoryTitle: "MAIN COURSE",
     items: [
       {
@@ -110,9 +110,9 @@ export const MENU_BOOK_PAGES: MenuBookPageData[] = [
     ],
   },
 
-  // Page 5: HOT DRINKS & COLD DRINKS
+  // Page 4: HOT DRINKS & COLD DRINKS
   {
-    pageNumber: 5,
+    pageNumber: 4,
     subCategories: [
       {
         title: "HOT DRINKS",
@@ -144,9 +144,9 @@ export const MENU_BOOK_PAGES: MenuBookPageData[] = [
     ],
   },
 
-  // Page 6: BEVERAGES
+  // Page 5: BEVERAGES
   {
-    pageNumber: 6,
+    pageNumber: 5,
     categoryTitle: "BEVERAGES",
     items: [
       { name: "JACK DANIEL’S" },
@@ -167,9 +167,9 @@ export const MENU_BOOK_PAGES: MenuBookPageData[] = [
     ],
   },
 
-  // Page 7: COCKTAILS AND MOCKTAILS
+  // Page 6: COCKTAILS AND MOCKTAILS
   {
-    pageNumber: 7,
+    pageNumber: 6,
     categoryTitle: "COCKTAILS AND MOCKTAILS",
     subCategories: [
       {
@@ -200,3 +200,21 @@ export const MENU_BOOK_PAGES: MenuBookPageData[] = [
     ],
   },
 ];
+
+// Single source of truth for the quick page navigation bar (derived from MENU_BOOK_PAGES
+// so the navigator can never drift out of sync with the menu pages).
+const NAV_LABELS: Record<number, string> = {
+  1: 'Starter',
+  2: 'Main Course',
+  3: 'Main Course II',
+  4: 'Hot & Cold',
+  5: 'Beverages',
+  6: 'Cocktails & Mocktails',
+};
+
+export const NAVIGATOR_PAGES: { id: string; label: string }[] = MENU_BOOK_PAGES.map(
+  (page) => ({
+    id: `page-${page.pageNumber}`,
+    label: NAV_LABELS[page.pageNumber] ?? page.categoryTitle ?? `Page ${page.pageNumber}`,
+  })
+);

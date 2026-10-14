@@ -11,7 +11,7 @@ import { Footer } from './components/Footer';
 import { MENU_BOOK_PAGES } from './data/menuData';
 
 export default function App() {
-  const [activePage, setActivePage] = useState<string>('page-2');
+  const [activePage, setActivePage] = useState<string>('page-1');
 
   const handleScrollToPage = (pageId: string) => {
     setActivePage(pageId);
@@ -37,13 +37,22 @@ export default function App() {
     let ticking = false;
     const updateActive = () => {
       const offset = window.innerWidth < 640 ? 130 : window.innerWidth < 768 ? 140 : 150;
-      let current = pageElements.length > 0 ? pageElements[0].id : 'page-2';
+      let current = pageElements.length > 0 ? pageElements[0].id : 'page-1';
       for (const el of pageElements) {
         if (el.getBoundingClientRect().top - offset <= 0) {
           current = el.id;
         } else {
           break;
         }
+      }
+      // When the page is scrolled to the very bottom, the last menu page may not be
+      // able to reach the trigger offset (not enough content below it). Highlight it
+      // anyway, otherwise the last navigator pill can never stay active.
+      if (
+        pageElements.length > 0 &&
+        window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4
+      ) {
+        current = pageElements[pageElements.length - 1].id;
       }
       setActivePage(current);
       ticking = false;
