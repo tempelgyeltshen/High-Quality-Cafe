@@ -9,7 +9,7 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ onScrollToPage }) => {
   return (
     <header
-      className="sticky top-0 z-40 bg-[#140803] border-b border-[#3b1e10] px-3 sm:px-4 md:px-6 py-4 sm:py-5 md:py-6 shadow-lg"
+      className="relative z-40 bg-[#140803] border-b border-[#3b1e10] px-3 sm:px-4 md:px-6 py-4 sm:py-5 md:py-6 shadow-lg"
       style={{ fontFamily: '"Times New Roman", Times, "Liberation Serif", serif' }}
     >
       <div className="w-full max-w-2xl mx-auto flex flex-col items-center justify-center">

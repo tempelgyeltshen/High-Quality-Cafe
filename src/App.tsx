@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Header } from './components/Header';
 import { PageNavigator } from './components/PageNavigator';
 import { MenuBookPage } from './components/MenuBookPage';
@@ -28,16 +28,56 @@ export default function App() {
     }
   };
 
+  // Scroll-spy: keep the navigator's active page in sync with scroll position
+  useEffect(() => {
+    const pageElements = MENU_BOOK_PAGES
+      .map((p) => document.getElementById(`page-${p.pageNumber}`))
+      .filter((el): el is HTMLElement => el !== null);
+
+    let ticking = false;
+    const updateActive = () => {
+      const offset = window.innerWidth < 640 ? 130 : window.innerWidth < 768 ? 140 : 150;
+      let current = pageElements.length > 0 ? pageElements[0].id : 'page-2';
+      for (const el of pageElements) {
+        if (el.getBoundingClientRect().top - offset <= 0) {
+          current = el.id;
+        } else {
+          break;
+        }
+      }
+      setActivePage(current);
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(updateActive);
+      }
+    };
+
+    updateActive();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#140b07] text-[#f5efe6] flex flex-col font-sans selection:bg-[#d4af37]/30 selection:text-[#fffdfa]">
-      {/* Top Header - Exact match to user's uploaded image.png */}
-      <Header onScrollToPage={handleScrollToPage} />
+      {/* Sticky top block: Header + Quick Page Navigation stay visible while scrolling */}
+      <div className="sticky top-0 z-40">
+        {/* Top Header - Exact match to user's uploaded image.png */}
+        <Header onScrollToPage={handleScrollToPage} />
 
-      {/* Sticky Quick Page Navigation Bar */}
-      <PageNavigator
-        activePage={activePage}
-        onSelectPage={handleScrollToPage}
-      />
+        {/* Sticky Quick Page Navigation Bar */}
+        <PageNavigator
+          activePage={activePage}
+          onSelectPage={handleScrollToPage}
+        />
+      </div>
 
       {/* Main Menu Book Container (Starts directly with the cafe menu pages) */}
       <main className="flex-1 w-full mx-auto px-2 sm:px-3 md:px-4 lg:px-6 py-4 sm:py-6 md:py-8 space-y-5 sm:space-y-8 md:space-y-10 lg:space-y-14 flex flex-col items-center">
