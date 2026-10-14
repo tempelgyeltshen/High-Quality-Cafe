@@ -1,6 +1,6 @@
 import React from 'react';
 import { RESTAURANT_INFO } from '../data/menuData';
-import { FacetedFiveStars } from './CafeLogo';
+import { Asset2Logo } from './CafeLogo';
 
 interface HeaderProps {
   onScrollToPage: (pageId: string) => void;
@@ -13,14 +13,15 @@ export const Header: React.FC<HeaderProps> = ({ onScrollToPage }) => {
       style={{ fontFamily: '"Times New Roman", Times, "Liberation Serif", serif' }}
     >
       <div className="max-w-xl mx-auto flex items-center justify-center sm:justify-start">
-        {/* Exactly matching image.png: [5 Faceted Gold Stars] [HIGH QUALITY CAFÉ] on one line */}
+        {/* Exact match to image.png using Asset 2.svg as the official logo */}
         <button
           onClick={() => onScrollToPage('page-2')}
           className="flex items-center gap-3 sm:gap-4 hover:opacity-95 transition-opacity text-left cursor-pointer"
+          title="Scroll to Top of Menu"
         >
-          {/* 5 Faceted Gold Stars */}
+          {/* Official 5-Star Logo from Asset 2.svg */}
           <div className="shrink-0 flex items-center">
-            <FacetedFiveStars scale={0.78} />
+            <Asset2Logo width={135} />
           </div>
 
           {/* HIGH QUALITY CAFÉ - Bold Golden Title */}

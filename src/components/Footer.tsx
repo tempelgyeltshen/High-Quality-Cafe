@@ -1,6 +1,6 @@
 import React from 'react';
 import { RESTAURANT_INFO } from '../data/menuData';
-import { FacetedFiveStars } from './CafeLogo';
+import { Asset2Logo } from './CafeLogo';
 
 export const Footer: React.FC = () => {
   return (
@@ -9,9 +9,9 @@ export const Footer: React.FC = () => {
       style={{ fontFamily: '"Times New Roman", Times, "Liberation Serif", serif' }}
     >
       <div className="max-w-md mx-auto space-y-4">
-        {/* 5 Faceted Stars */}
+        {/* Official 5-Star Logo (Asset 2.svg only) */}
         <div className="flex justify-center">
-          <FacetedFiveStars scale={0.65} />
+          <Asset2Logo width={110} />
         </div>
 
         <div className="text-xl font-bold text-white tracking-[0.16em] uppercase">

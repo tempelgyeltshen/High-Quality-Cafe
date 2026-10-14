@@ -20,17 +20,17 @@ export const PageNavigator: React.FC<PageNavigatorProps> = ({
 
   return (
     <div
-      className="sticky top-[49px] z-30 bg-[#160b06]/90 backdrop-blur-md border-b border-[#341b10] py-2 px-3 shadow-md"
+      className="sticky top-[41px] sm:top-[45px] md:top-[49px] z-30 bg-[#160b06]/90 backdrop-blur-md border-b border-[#341b10] py-1.5 sm:py-2 px-2 sm:px-3 shadow-md"
       style={{ fontFamily: '"Times New Roman", Times, "Liberation Serif", serif' }}
     >
-      <div className="max-w-xl mx-auto flex items-center justify-start sm:justify-center gap-2 overflow-x-auto no-scrollbar">
+      <div className="max-w-xl mx-auto flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar">
         {pages.map((p) => {
           const isActive = activePage === p.id;
           return (
             <button
               key={p.id}
               onClick={() => onSelectPage(p.id)}
-              className={`px-3.5 py-1 rounded-full text-[12px] sm:text-[13px] font-bold tracking-wider whitespace-nowrap transition-colors shrink-0 ${
+              className={`px-2.5 sm:px-3.5 py-1 rounded-full text-[10px] sm:text-[12px] md:text-[13px] font-bold tracking-wider whitespace-nowrap transition-colors shrink-0 ${
                 isActive
                   ? 'bg-gradient-to-r from-[#c59b27] via-[#fae08c] to-[#c59b27] text-[#120803] shadow'
                   : 'bg-[#22120a] text-[#cbb9aa] hover:text-[#fad468] hover:bg-[#2f180e] border border-[#3e2114]'

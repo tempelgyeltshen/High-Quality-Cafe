@@ -17,7 +17,7 @@ export default function App() {
     setActivePage(pageId);
     const element = document.getElementById(pageId);
     if (element) {
-      const offset = 95;
+      const offset = window.innerWidth < 640 ? 85 : 95;
       const elementPosition = element.getBoundingClientRect().top + window.scrollY;
       const offsetPosition = elementPosition - offset;
 
@@ -40,7 +40,7 @@ export default function App() {
       />
 
       {/* Main Menu Book Container (Starts directly with the cafe menu pages) */}
-      <main className="flex-1 w-full mx-auto px-3 sm:px-4 py-6 sm:py-8 space-y-10 sm:space-y-14 flex flex-col items-center">
+      <main className="flex-1 w-full mx-auto px-2 sm:px-4 md:px-6 py-4 sm:py-6 md:py-8 space-y-6 sm:space-y-10 md:space-y-14 flex flex-col items-center">
         {MENU_BOOK_PAGES.map((page) => (
           <MenuBookPage key={page.pageNumber} page={page} />
         ))}

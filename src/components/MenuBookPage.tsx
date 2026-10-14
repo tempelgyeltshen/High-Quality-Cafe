@@ -5,7 +5,7 @@ import {
   PageHeaderLockup,
   CategoryPill,
 } from './MenuBookDecorations';
-import { FacetedFiveStars } from './CafeLogo';
+import { Asset2Logo } from './CafeLogo';
 
 interface MenuBookPageProps {
   page: MenuBookPageData;
@@ -24,7 +24,7 @@ export const MenuBookPage: React.FC<MenuBookPageProps> = ({ page }) => {
       {/* 4 Corner Filigrees */}
       <CornerFiligrees />
 
-      {/* Top Header Lockup with 5 Faceted 3D Stars & Prominent Plaque */}
+      {/* Top Header Lockup with Asset 2 Logo & Plaque */}
       <PageHeaderLockup />
 
       {/* The Central Golden Arched Card (Exact replica of the golden arch from the PDF) */}
@@ -72,8 +72,6 @@ export const MenuBookPage: React.FC<MenuBookPageProps> = ({ page }) => {
             {page.subCategories.map((sub, sIdx) => (
               <div key={sIdx}>
                 {/* Subcategory Header */}
-                {/* On Page 5, show individual pills for HOT DRINKS & COLD DRINKS */}
-                {/* On Page 7, show clean sub-heading under main COCKTAILS AND MOCKTAILS pill */}
                 {page.pageNumber === 5 ? (
                   <CategoryPill title={sub.title} />
                 ) : (
@@ -97,10 +95,10 @@ export const MenuBookPage: React.FC<MenuBookPageProps> = ({ page }) => {
                   ))}
                 </div>
 
-                {/* Subtle small logo accent between subcategories */}
+                {/* Logo Accent between subcategories using Asset2Logo only */}
                 {sIdx < (page.subCategories?.length || 0) - 1 && (
-                  <div className="flex justify-center my-3 opacity-60">
-                    <FacetedFiveStars scale={0.4} />
+                  <div className="flex justify-center my-3 opacity-75">
+                    <Asset2Logo width={70} />
                   </div>
                 )}
               </div>
@@ -108,13 +106,13 @@ export const MenuBookPage: React.FC<MenuBookPageProps> = ({ page }) => {
           </div>
         )}
 
-        {/* Inner Card Bottom Arch Accent with small logo stars and prominent High Quality Café */}
-        <div className="mt-4 pt-2.5 border-t border-[#8e6518]/30 flex items-center justify-center gap-2">
-          <FacetedFiveStars scale={0.35} />
-          <span className="text-[10.5px] sm:text-[11.5px] font-extrabold tracking-widest text-[#4d3204] uppercase">
+        {/* Inner Card Bottom Arch Accent with Asset2Logo only */}
+        <div className="mt-4 pt-2.5 border-t border-[#8e6518]/30 flex items-center justify-center gap-2.5">
+          <Asset2Logo width={55} />
+          <span className="text-[10px] sm:text-[11px] font-extrabold tracking-widest text-[#4d3204] uppercase">
             HIGH QUALITY CAFÉ
           </span>
-          <FacetedFiveStars scale={0.35} />
+          <Asset2Logo width={55} />
         </div>
       </div>
 

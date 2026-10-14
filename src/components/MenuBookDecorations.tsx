@@ -1,5 +1,5 @@
 import React from 'react';
-import { FacetedFiveStars } from './CafeLogo';
+import { Asset2Logo } from './CafeLogo';
 
 export const CornerFiligrees: React.FC = () => {
   return (
@@ -58,9 +58,9 @@ export const CornerFiligrees: React.FC = () => {
 export const PageHeaderLockup: React.FC = () => {
   return (
     <div className="text-center pt-4 pb-2 px-4 relative z-10">
-      {/* 5 Faceted Gold Stars from User's Logo */}
+      {/* Official 5-Star Logo (Asset 2.svg only) */}
       <div className="flex justify-center mb-1 drop-shadow-sm">
-        <FacetedFiveStars scale={0.75} />
+        <Asset2Logo width={125} />
       </div>
 
       {/* Top Symmetrical Flourish Bracket with Spire */}
