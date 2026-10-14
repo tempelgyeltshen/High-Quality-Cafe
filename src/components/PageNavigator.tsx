@@ -19,7 +19,7 @@ export const PageNavigator: React.FC<PageNavigatorProps> = ({
 
   return (
     <div
-      className="sticky top-[37px] sm:top-[41px] md:top-[45px] z-30 bg-[#160b06]/90 backdrop-blur-md border-b border-[#341b10] py-1.5 sm:py-2 px-2 sm:px-3 shadow-md"
+      className="sticky top-[65px] sm:top-[75px] md:top-[85px] z-30 bg-[#160b06]/90 backdrop-blur-md border-b border-[#341b10] py-1.5 sm:py-2 px-2 sm:px-3 shadow-md"
       style={{ fontFamily: '"Times New Roman", Times, "Liberation Serif", serif' }}
     >
       <div className="max-w-xl mx-auto flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar">

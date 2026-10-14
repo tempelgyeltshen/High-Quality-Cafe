@@ -17,7 +17,7 @@ export default function App() {
     setActivePage(pageId);
     const element = document.getElementById(pageId);
     if (element) {
-      const offset = window.innerWidth < 640 ? 80 : window.innerWidth < 768 ? 85 : 95;
+      const offset = window.innerWidth < 640 ? 130 : window.innerWidth < 768 ? 140 : 150;
       const elementPosition = element.getBoundingClientRect().top + window.scrollY;
       const offsetPosition = elementPosition - offset;
 
