@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Exec(ls)",
+      "Exec(Get-ChildItem)",
+      "Exec(npm run)",
+      "Exec(npm install)",
+      "Exec(git status)",
+      "Exec(git log)",
+      "Exec(git init)",
+      "Exec(git remote)",
+      "Exec(git add)"
+    ]
+  }
+}

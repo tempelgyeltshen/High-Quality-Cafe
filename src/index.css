@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-times: 'Times New Roman', Times, 'Liberation Serif', Georgia, serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    font-family: var(--font-times);
+  }
+}
+
+/* Luxury Geometric Lattice Pattern from Reference PDF */
+.bg-menu-pattern {
+  background-color: #24140c;
+  background-image: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.05) 0%, transparent 80%),
+    url("data:image/svg+xml,%3Csvg width='56' height='56' viewBox='0 0 56 56' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M28 0 L56 28 L28 56 L0 28 Z' fill='none' stroke='%23381e13' stroke-width='1.2'/%3E%3Cpath d='M28 7 L49 28 L28 49 L7 28 Z' fill='none' stroke='%2327130b' stroke-width='0.8'/%3E%3Cpath d='M28 14 L42 28 L28 42 L14 28 Z' fill='none' stroke='%23482618' stroke-width='0.75' opacity='0.7'/%3E%3Ccircle cx='28' cy='28' r='2' fill='%23c59b27' fill-opacity='0.25'/%3E%3Ccircle cx='0' cy='0' r='1.5' fill='%23c59b27' fill-opacity='0.2'/%3E%3Ccircle cx='56' cy='0' r='1.5' fill='%23c59b27' fill-opacity='0.2'/%3E%3Ccircle cx='0' cy='56' r='1.5' fill='%23c59b27' fill-opacity='0.2'/%3E%3Ccircle cx='56' cy='56' r='1.5' fill='%23c59b27' fill-opacity='0.2'/%3E%3Cpath d='M28 24 L32 28 L28 32 L24 28 Z' fill='%23c59b27' fill-opacity='0.15'/%3E%3C/svg%3E");
+  background-size: auto, 56px 56px;
+}
+
+/* Subtle Gold Metallic Accents */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #fce09b 0%, #dfb251 50%, #b8860b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Hide scrollbar for clean horizontal category swipe on mobile */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Print Styles for QR Table Cards */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+}
