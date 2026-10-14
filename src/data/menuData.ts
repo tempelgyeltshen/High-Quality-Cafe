@@ -212,9 +212,13 @@ const NAV_LABELS: Record<number, string> = {
   6: 'Cocktails & Mocktails',
 };
 
-export const NAVIGATOR_PAGES: { id: string; label: string }[] = MENU_BOOK_PAGES.map(
-  (page) => ({
+// Pages whose content still appears in the menu but which have no pill in the
+// quick navigation bar (removed on request — both main course sections).
+const NAV_HIDDEN_PAGES: number[] = [2, 3];
+
+export const NAVIGATOR_PAGES: { id: string; label: string }[] = MENU_BOOK_PAGES
+  .filter((page) => !NAV_HIDDEN_PAGES.includes(page.pageNumber))
+  .map((page) => ({
     id: `page-${page.pageNumber}`,
     label: NAV_LABELS[page.pageNumber] ?? page.categoryTitle ?? `Page ${page.pageNumber}`,
-  })
-);
+  }));

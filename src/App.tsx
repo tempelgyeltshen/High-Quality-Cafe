@@ -8,7 +8,7 @@ import { Header } from './components/Header';
 import { PageNavigator } from './components/PageNavigator';
 import { MenuBookPage } from './components/MenuBookPage';
 import { Footer } from './components/Footer';
-import { MENU_BOOK_PAGES } from './data/menuData';
+import { MENU_BOOK_PAGES, NAVIGATOR_PAGES } from './data/menuData';
 
 export default function App() {
   const [activePage, setActivePage] = useState<string>('page-1');
@@ -30,7 +30,13 @@ export default function App() {
 
   // Scroll-spy: keep the navigator's active page in sync with scroll position
   useEffect(() => {
+    // Only track pages that have a pill in the navigator, so pages hidden
+    // from the navbar keep the previous pill highlighted while scrolling past.
+    const navPageNumbers = new Set(
+      NAVIGATOR_PAGES.map((p) => Number(p.id.replace('page-', '')))
+    );
     const pageElements = MENU_BOOK_PAGES
+      .filter((p) => navPageNumbers.has(p.pageNumber))
       .map((p) => document.getElementById(`page-${p.pageNumber}`))
       .filter((el): el is HTMLElement => el !== null);
 

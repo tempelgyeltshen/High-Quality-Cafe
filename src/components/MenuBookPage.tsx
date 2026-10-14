@@ -2,10 +2,8 @@ import React from 'react';
 import { MenuBookPageData } from '../data/menuData';
 import {
   CornerFiligrees,
-  PageHeaderLockup,
   CategoryPill,
 } from './MenuBookDecorations';
-import { Asset2Logo } from './CafeLogo';
 
 interface MenuBookPageProps {
   page: MenuBookPageData;
@@ -23,9 +21,6 @@ export const MenuBookPage: React.FC<MenuBookPageProps> = ({ page }) => {
 
       {/* 4 Corner Filigrees */}
       <CornerFiligrees />
-
-      {/* Top Header Lockup with Asset 2 Logo & Plaque */}
-      <PageHeaderLockup />
 
       {/* The Central Golden Arched Card (Exact replica of the golden arch from the PDF) */}
       <div className="relative mx-1 sm:mx-1.5 md:mx-2 mt-1 rounded-t-[28px] sm:rounded-t-[36px] rounded-b-xl sm:rounded-b-2xl overflow-hidden shadow-2xl border border-[#78510a] bg-gradient-to-b from-[#d9aa38] via-[#eed27d] via-[#dcae3a] to-[#ba8a21] text-[#120903] p-3 sm:p-4 md:p-5 pt-2 sm:pt-3">
@@ -95,25 +90,10 @@ export const MenuBookPage: React.FC<MenuBookPageProps> = ({ page }) => {
                   ))}
                 </div>
 
-                {/* Logo Accent between subcategories using Asset2Logo only */}
-                {sIdx < (page.subCategories?.length || 0) - 1 && (
-                  <div className="flex justify-center my-2 sm:my-3 opacity-75">
-                    <Asset2Logo width={60} />
-                  </div>
-                )}
               </div>
             ))}
           </div>
         )}
-
-        {/* Inner Card Bottom Arch Accent with Asset2Logo only */}
-        <div className="mt-3 sm:mt-4 pt-2 sm:pt-2.5 border-t border-[#8e6518]/30 flex items-center justify-center gap-1.5 sm:gap-2.5">
-          <Asset2Logo width={45} />
-          <span className="text-[9px] sm:text-[10px] md:text-[11px] font-extrabold tracking-widest text-[#4d3204] uppercase">
-            HIGH QUALITY CAFÉ
-          </span>
-          <Asset2Logo width={45} />
-        </div>
       </div>
 
       {/* Page Number Marker */}
