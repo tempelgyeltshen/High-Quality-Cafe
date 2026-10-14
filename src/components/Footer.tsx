@@ -18,7 +18,7 @@ export const Footer: React.FC = () => {
           {RESTAURANT_INFO.name}
         </div>
         <p className="text-[11px] sm:text-xs text-[#9d8977] leading-relaxed">
-          Traditional Bhutanese cuisine & handcrafted café selections.
+          Where quality meets taste.
         </p>
 
         <div className="pt-4 sm:pt-6 border-t border-[#26140b] text-[10px] sm:text-[11px] text-[#716155]">
